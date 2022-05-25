@@ -15,6 +15,7 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('student_code')->nullable();
             $table->string('name_th')->nullable();
             $table->string('name_eng')->nullable();
             $table->string('nick_name')->nullable();
@@ -26,6 +27,7 @@ class CreateStudentsTable extends Migration
             $table->string('affiliation')->nullable();
             $table->string('position')->nullable();
             $table->text('work_description')->nullable();
+            $table->string('profile_image')->nullable();
             $table->bigInteger('group_id')->unsigned();
             $table->foreign('group_id')->references('id')->on('groups');
             $table->timestamps();

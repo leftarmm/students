@@ -19,8 +19,7 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/form', 'App\Http\Controllers\PageController@form');
-Route::get('/profile', 'App\Http\Controllers\PageController@profile');
+Route::get('/form', 'App\Http\Controllers\PageController@form')->name('form');
 
 Auth::routes();
 
@@ -37,4 +36,7 @@ Route::group([
     Route::resource('users', 'UserController');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/student_store', 'App\Http\Controllers\Controller@student_store')->name('student_store');
+Route::get('/thank', function () {
+    return view('thank');
+})->name('thank');

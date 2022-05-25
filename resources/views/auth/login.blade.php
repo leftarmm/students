@@ -15,7 +15,8 @@
             </div> -->
             <div class="card-body text-center">
                 <img class="mt-3 mb-5" src="{{ asset('img/logo.png') }}" alt="" height="100px">
-                <h1 class="card-title text-dark">{{ _('Log in') }}</h1>
+                <h1 class="card-title text-dark">{{ _('BEP 9') }}</h1>
+                <h5>หลักสูตรนักบริหารการงบประมาณระดับสูง รุ่นที่ 9</h5>
                 <p class="text-dark mb-2">Sign in with <strong>secret passcode</strong></p>
                 <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                     <!-- <div class="input-group-prepend">
@@ -37,7 +38,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">{{ _('Get Started') }}</button>
+                <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">{{ _('Sign in') }}</button>
                 <!-- <div class="pull-left">
                     <h6>
                         <a href="{{ route('register') }}" class="link footer-link">{{ _('Create Account') }}</a>

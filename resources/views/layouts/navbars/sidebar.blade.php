@@ -1,8 +1,8 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-mini">{{ _('Alumni') }}</a>
-            <a href="#" class="simple-text logo-normal">{{ _('Dashboard') }}</a>
+            <a href="#" class="simple-text logo-mini"><i class="tim-icons icon-bullet-list-67"></i></a>
+            <a href="#" class="simple-text logo-normal">{{ _('Menu') }}</a>
         </div>
         <ul class="nav">
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
@@ -11,7 +11,7 @@
                     <p>{{ _('Dashboard') }}</p>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
                     <span class="nav-link-text" >{{ __('Laravel Examples') }}</span>
@@ -34,7 +34,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>

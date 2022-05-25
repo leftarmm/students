@@ -15,6 +15,7 @@ class Student extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'student_code',
         'name_th',
         'name_eng',
         'nick_name',
@@ -26,6 +27,15 @@ class Student extends Model
         'affiliation',
         'position',
         'work_description',
+        'profile_image',
         'group_id',
     ];
+
+    public function group($id){
+        return Group::find($id)->name_th;
+    } 
+    
+    public function group_color($id){
+        return Group::find($id)->color;
+    }
 }

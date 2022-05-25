@@ -1,0 +1,103 @@
+@extends('layouts.app', ['page' => __('User Profile'), 'pageSlug' => 'profile'])
+
+@section('content')
+<div class="row">
+    <div class="col-md-8">
+        <div class="card card-user">
+            <div class="card-header">
+                <h5 class="title">{{ _('Profile') }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                <div class="author">
+                    <div class="block block-one"></div>
+                    <div class="block block-two"></div>
+                    <div class="block block-three"></div>
+                    <div class="block block-four"></div>
+                    <a href="#">
+                        @if(!is_null($student->profile_image))
+                        <img class="mb-3" src="{{ asset('storage/profile_images/'.$student->profile_image) }}" height="200px" style="border: 5px solid #eee;border-bottom-color: transparent;" />
+                        @else
+                        <img class="mb-3" src="{{ asset('img/default-avatar.png') }}" id="profile-image" height="200px" style="border: 5px solid #eee;border-bottom-color: transparent;">
+                        @endif
+                        <h4 class="title">{{ $student->name_th ?? '' }}</h4>
+                    </a>
+                    <p class="description">
+                        {{ $student->position ?? '' }}
+                    </p>
+                    <a href="{{ route('students.edit', ['student' => $student]) }}" class="btn btn-sm btn-info">แก้ไขข้อมูล</a>
+                </div>
+                </p>
+                <div class="typography-line mt-5">
+                    <h4>
+                        <span>กลุ่ม</span>{{ $student->group($student->group_id) ?? '' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>รหัสประจำตัว</span>{{ $student->student_code ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>ชื่อ (TH)</span>{{ $student->name_th ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>ชื่อ (ENG)</span>{{ $student->name_eng ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>ชื่อเล่น</span>{{ $student->nick_name ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>วันเกิด</span>{{ date('d/m/Y', strtotime($student->birth_date)) ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>เบอร์โทร</span>{{ $student->telephone ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>Email</span>{{ $student->email ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>Facebook</span>{{ $student->facebook ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>Line ID</span>{{ $student->line ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>สังกัด</span>{{ $student->affiliation ?? '-' }}
+                    </h4>
+                </div>
+                <div class="typography-line">
+                    <h4>
+                        <span>ตำแหน่ง</span>{{ $student->position ?? '-' }}
+                    </h4>
+                </div>
+                <h4 style="color:#c0c1c2;">
+                    ลักษณะงาน
+                </h4>
+                <h4>{!! $student->work_description ?? '-' !!}</h4>
+            </div>
+            <div class="card-footer">
+                <!-- <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">{{ _('บันทึกข้อมูล') }}</button> -->
+                <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg btn-block mb-3">กลับ</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
