@@ -30,6 +30,7 @@ class CreateStudentsTable extends Migration
             $table->string('profile_image')->nullable();
             $table->bigInteger('group_id')->unsigned();
             $table->foreign('group_id')->references('id')->on('groups');
+            $table->text('password')->nullable();
             $table->timestamps();
         });
     }

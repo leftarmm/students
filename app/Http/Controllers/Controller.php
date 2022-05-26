@@ -18,27 +18,27 @@ class Controller extends BaseController
     {
         //dd($request->all());
 
-        $data = $request->except(['_token', 'profile_image']);
+        // $data = $request->except(['_token', 'profile_image']);
 
-        if (!Storage::disk('public')->has('profile_images')) {
-            Storage::disk('public')->makeDirectory('profile_images');
-        }
+        // if (!Storage::disk('public')->has('profile_images')) {
+        //     Storage::disk('public')->makeDirectory('profile_images');
+        // }
 
-        // $request->merge(
-        //     [
+        // // $request->merge(
+        // //     [
                
-        //     ]
-        // );
+        // //     ]
+        // // );
 
-        $student = new Student();
-        $student->fill($data);
-        $student->save();
+        // $student = new Student();
+        // $student->fill($data);
+        // $student->save();
 
-        $file_name = $student->student_code . '_' . date('dmY_His') . '.' . $request->file('profile_image')->getClientOriginalExtension();
-        Storage::disk('public')->put('profile_images/' . $file_name, file_get_contents($request->file('profile_image')));
-        $student->profile_image = $file_name;
-        $student->save();
+        // $file_name = $student->student_code . '_' . date('dmY_His') . '.' . $request->file('profile_image')->getClientOriginalExtension();
+        // Storage::disk('public')->put('profile_images/' . $file_name, file_get_contents($request->file('profile_image')));
+        // $student->profile_image = $file_name;
+        // $student->save();
 
-        return redirect()->route('thank');
+        // return redirect()->route('thank');
     }
 }

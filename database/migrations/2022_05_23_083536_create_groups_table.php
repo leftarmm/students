@@ -19,6 +19,7 @@ class CreateGroupsTable extends Migration
             $table->string('name_eng')->nullable();
             $table->string('image')->nullable();
             $table->string('color')->nullable();
+            $table->string('font_color')->nullable();
             $table->timestamps();
         });
     }

@@ -45,20 +45,20 @@
         <a href="{{ route('students.index', ['id' => $data->id]) }}">
             <div class="card text-center h-95">
                 <div class="card-header">
-                    <h4 class="card-title">{{ $data->student_code ?? '' }} - <b class="title">พี่{{ $data->nick_name ?? '' }}</b></h4>
+                    <h4 class="card-title title">{{ $data->student_code ?? '' }} @if(!is_null($data->nick_name)) {{ '- พี่'.$data->nick_name }} @endif</h4>
                 </div>
                 <div class="card-body">
                     {{--<h1 class="mt-3">#{{ $data->student_code ?? '' }}</h1>--}}
                     @if(!is_null($data->profile_image))
                     <img class="mb-3" src="{{ asset('storage/profile_images/'.$data->profile_image) }}" height="190px" />
                     @else
-                    <img class="mb-3" src="{{ rand(0,1) == 1 ? asset('img/anime3.png') : asset('img/anime6.png') }}" height="190px" />
+                    <img class="mb-3" src="{{ asset('img/default-avatar.png') }}" height="190px" />
                     @endif
                     {{--<h1 class="mt-3"><b>พี่{{ $data->nick_name ?? '' }}</b></h1>--}}
                     <h4 class="title">{{ $data->name_th ?? '' }}</h4>
                     <h4>{{ $data->affiliation ?? '' }}</h4>
                 </div>
-                <div class="card-footer bg-primary text-white" style="background-color: {{$data->group_color($data->group_id)}} !important;">กลุ่ม {{ $data->group($data->group_id) ?? '' }}
+                <div class="card-footer bg-primary" style="color: {{$data->font_color($data->group_id)}} !important;background-color:{{$data->group_color($data->group_id)}} !important;">กลุ่ม {{ $data->group($data->group_id) ?? '' }}
                 </div>
             </div>
         </a>

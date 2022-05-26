@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\Student;
+use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,6 +17,12 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
+
+        // foreach (Student::all() as $key => $value) {
+        //     $last = ucfirst(explode(" ",  strtolower($value->name_eng))[1]);
+        //     $value->password = encrypt(substr($last, 0, 4).'#'.$value->student_code);
+        //     $value->save();
+        // } 
         if ($request->has('group_id') && !is_null($request->group_id)) {
             return view('dashboard', [
                 'group' => $request->group_id,

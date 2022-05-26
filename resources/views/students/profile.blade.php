@@ -25,7 +25,8 @@
                     <p class="description">
                         {{ $student->position ?? '' }}
                     </p>
-                    <a href="{{ route('students.edit', ['student' => $student]) }}" class="btn btn-sm btn-info">แก้ไขข้อมูล</a>
+                    {{--<a href="{{ route('students.edit', ['student' => $student]) }}" class="btn btn-sm btn-info">แก้ไขข้อมูล</a>--}}
+                    <a href="#" id="btn-edit-info" class="btn btn-sm btn-info" data-id="{{ $student->id }}">แก้ไขข้อมูล</a>
                 </div>
                 </p>
                 <div class="typography-line mt-5">
@@ -101,3 +102,51 @@
     </div>
 </div>
 @endsection
+
+
+@push('js')
+<script>
+    $(document).ready(function() {
+        $('#btn-edit-info').click(function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                title: "Authentication",
+                text: "Please input password",
+                input: 'text',
+                showCancelButton: true,
+                allowOutsideClick: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Verify'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{ route('students.check_password') }}",
+                        type: "post",
+                        data: {
+                            '_token': '{{ Session::token() }}',
+                            'id': id,
+                            'password': result.value
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response != true) {
+                                toastr.error('Authentication failed');
+                                $('#btn-edit-info').click();
+                            } else {
+                                toastr.success('Authentication successful');
+                                setInterval(function() {
+                                    window.location = "{{ route('students.edit', ['student' => $student, 'verify' => $student->password.$student->student_code]) }}";
+                                }, 1000);
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+@endpush

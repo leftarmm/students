@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\Student;
+use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,6 +47,9 @@ class StudentController extends Controller
     {
         //dd($request->all());
         if ($request->has('id')) {
+            if ($request->has('new_password') && !is_null($request->new_password)) {
+                $request->merge(['password' => encrypt($request->new_password)]);
+            }
             $data = $request->except(['_token', 'profile_image']);
 
             if (!Storage::disk('public')->has('profile_images')) {
@@ -87,12 +91,20 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(Student $student, Request $request)
     {
-        return view('students.form', [
-            'groups' => Group::all(),
-            'student' => $student
-        ]);
+        if ($request->has('verify') && $request->verify == $student->password.$student->student_code) {
+            $student->password = decrypt($student->password);
+            // $student->birth_date = (date('Y', strtotime($student->birth_date)) - 543).date('-m-d', strtotime($student->birth_date));
+            return view('students.form', [
+                'groups' => Group::all(),
+                'student' => $student
+            ]);
+        } else {
+            return view('students.profile', [
+                'student' => $student
+            ]);
+        }
     }
 
     /**
@@ -116,5 +128,15 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    public function check_password(Request $request)
+    {
+        $s = Student::find($request->id);
+        if (decrypt($s->password) == $request->password) {
+            return response()->json(true);
+        } else {
+            return response()->json(false);
+        }
     }
 }

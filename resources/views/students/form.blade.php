@@ -90,6 +90,13 @@
                         <label>ลักษณะงาน</label>
                         <textarea class="form-control summernote" placeholder="ลักษณะงาน" name="work_description" rows="10">{{ $student->work_description ?? '' }}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label>เปลี่ยน Password</label>
+                        <input type="password" class="form-control" id="myPassword" value="{{ $student->password ?? '' }}" readonly>
+                        <h4 class="mt-2 mb-2 text-primary" id="myPassword2">แตะเพี่อแสดง password</h4>
+                        <label>Password ใหม่</label>
+                        <input type="text" class="form-control" name="new_password" value="">
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-lg mb-3">{{ _('อัพเดทข้อมูล') }}</button>
@@ -127,6 +134,24 @@
         $("#formFile").change(function() {
             readURL(this);
         });
+
+        $('#myPassword').hover(function show() {
+                //Change the attribute to text  
+                $('#myPassword').attr('type', 'text');
+            },
+            function() {
+                //Change the attribute back to password  
+                $('#myPassword').attr('type', 'password');
+            });
+
+        $('#myPassword2').hover(function show() {
+                //Change the attribute to text  
+                $('#myPassword').attr('type', 'text');
+            },
+            function() {
+                //Change the attribute back to password  
+                $('#myPassword').attr('type', 'password');
+            });
     });
 </script>
 @endpush

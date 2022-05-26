@@ -33,6 +33,7 @@ Route::group([
     Route::resource('groups', 'GroupController');
     Route::resource('profile', 'ProfileController');
     Route::resource('students', 'StudentController');
+    Route::post('/check_password', 'StudentController@check_password')->name('students.check_password');
     Route::resource('users', 'UserController');
 });
 

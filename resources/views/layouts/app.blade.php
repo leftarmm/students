@@ -69,6 +69,7 @@
     {{-- <script src="{{ asset('js/plugins/chartjs.min.js') }}"></script> --}}
     <!--  Notifications Plugin    -->
     <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('js/white-dashboard.min.js?v=1.0.0') }}"></script>

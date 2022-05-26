@@ -29,6 +29,7 @@ class Student extends Model
         'work_description',
         'profile_image',
         'group_id',
+        'password'
     ];
 
     public function group($id){
@@ -37,5 +38,8 @@ class Student extends Model
     
     public function group_color($id){
         return Group::find($id)->color;
+    }
+    public function font_color($id){
+        return Group::find($id)->font_color;
     }
 }
